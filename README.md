@@ -1,4 +1,4 @@
-#Contact List App
+# Contact List App
 
 Contact List App that lets you create, read, update, and delete contacts.
 Made for learning MEAN Stack development.
