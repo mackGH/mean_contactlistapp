@@ -17,7 +17,7 @@ var dbSchema = mongoose.Schema({
 var dbModel = mongoose.model("dbModel", dbSchema);
 
 //Connects to mongodb in your server
-mongoose.connect(mongodb://dbadmin:dbpassword@ds141410.mlab.com:41410/contactlist_db);
+mongoose.connect('mongodb://dbadmin:dbpassword@ds141410.mlab.com:41410/contactlist_db');
 
 app.use(express.static(__dirname + '/public'));
 
