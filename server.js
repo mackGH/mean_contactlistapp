@@ -112,8 +112,9 @@ function updateContact(req, res){
 				res.sendStatus(400);
 		});
 }
+var port = process.env.PORT || 3000;
 
 //Server would listen for incoming requests from port 3000
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(port, function () {
+  console.log('App listening on port ' + port);
 });
