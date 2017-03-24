@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--'ng-app' means this will be an AngularJS web application-->
+<html lang="en" ng-app="ContactListApp">
+<head>
+	<!--Declare the bootstrapcdn in order to customize how your site looks-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!--Bootstrap's principle of 'mobile first', makes the page responsive to mobile devices-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<title>Contact List</title>
+</head>
+<body>
+	<div class="jumbotron text-center">
+		<h1>Contact List Web-App</h1>
+		<p>It's like managing your contact list in your phone but in the web!</p> 
+	</div>
+
+	<!--'ng-controller' declares which controller would manage this SPECIFIC <div> tag-->
+	<div class="container" ng-controller="AppController">
+		<hr>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<!--'ng-model' binds the data in the input field into variable 'contact.name'-->
+					<input class="form-control" placeholder="Name" ng-model="contact.name"></input>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+					<!--'ng-model' binds the data in the input field into variable 'contact.number'-->
+					<input class="form-control" placeholder="Number" ng-model="contact.number"></input>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+					<!--'ng-model' binds the data in the input field into variable 'contact.email'-->
+					<input class="form-control" placeholder="Email" ng-model="contact.email"></input>
+				</div>
+			</div>
+			<div class="col-sm-3" ng-model="editing">
+				<!--'ng-click' triggers a click-event and finds the 'createContact()' function in your javascript file-->
+				<button class="btn btn-primary" ng-click="createContact(contact)" ng-disabled="editing">Create</button>
+				<!--'ng-click' triggers a click-event and finds the 'updateContact()' function in your javascript file-->
+				<button class="btn btn-info" ng-click="updateContact(contact)" ng-disabled="!editing">Update</button>
+			</div>
+		</div>
+		<hr>
+
+		<table class="table">
+			<thead>
+				<tr class="active">
+					<th>#</th>
+					<th>Name</th>
+					<th>Number</th>
+					<th>Email</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--Loops through the mongodb for existing contacts and populates the table-->
+				<tr ng-repeat="contact in contacts">
+					<td>{{$index + 1}}</td>
+					<td>{{contact.name}}</td>
+					<td>{{contact.number}}</td>
+					<td>{{contact.email}}</td>
+					<td>
+						<!--'ng-click' triggers a click-event and finds the 'editContact()' function in your javascript file-->
+						<button class="btn btn-warning" ng-click="editContact(contact._id)">Edit</button>
+						<!--'ng-click' triggers a click-event and finds the 'deleteContact()' function in your javascript file-->
+						<button class="btn btn-danger" ng-click="deleteContact(contact._id)">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="container text-center">
+		<hr><p>Webpage made by Mark for learning MEAN Stack</p>
+	</footer>
+	<!--Get AngularJS in order to manage the content of your site-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<!--Links the javascript file that would manage the front-end functions of the app-->
+	<script src="contactlist_app.js"></script>
+</body>
+</html>
